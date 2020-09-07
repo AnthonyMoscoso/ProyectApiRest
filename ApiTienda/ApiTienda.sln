@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTienda", "ApiTienda\ApiTienda.csproj", "{54BF433A-9CAD-477B-B0CA-9ACD2D1D366D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54BF433A-9CAD-477B-B0CA-9ACD2D1D366D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54BF433A-9CAD-477B-B0CA-9ACD2D1D366D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54BF433A-9CAD-477B-B0CA-9ACD2D1D366D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54BF433A-9CAD-477B-B0CA-9ACD2D1D366D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DDF82CA-F33D-4EAF-BDCC-219A13935725}
+	EndGlobalSection
+EndGlobal

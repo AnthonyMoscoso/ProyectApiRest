@@ -1,0 +1,743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9EEEF449-9130-4CD6-95F7-45981BBB79F1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TiendaDesktop</RootNamespace>
+    <AssemblyName>TiendaDesktop</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1404.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1404.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Compuestas\ICompraRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Compuestas\IDevolucionRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Compuestas\IPedidoRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Compuestas\IProductoRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Conexiones\ILineaCompraRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Conexiones\ILineaPedidoRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Conexiones\IPermisosRolRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Simples\ICategoriaRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Simples\IDireccionRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Compuestas\IReservaRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Simples\IPermisoRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Simples\IRolRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Usuarios\IClienteRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Usuarios\IEmpleadoRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Abstracts\Usuarios\IPersonaRep.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Simples\ImageRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Simples\RolRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Usuarios\ClienteRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Compuestas\CompraRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Compuestas\DevolucionRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Compuestas\PedidoRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Compuestas\ProductoRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Compuestas\ReservaRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Conexiones\LineaCompraRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Conexiones\LineaPedidoRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Conexiones\PermisosRolRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Simples\CategoriaRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Simples\DireccionRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Simples\PermisoRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Usuarios\EmpleadoRepositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Concret\Usuarios\PersonaRepositorie.cs" />
+    <Compile Include="Core\Utilites\Controladores\IImageControl.cs" />
+    <Compile Include="Core\Utilites\Controladores\ImageControl.cs" />
+    <Compile Include="Core\Enums\FormasDePago.cs" />
+    <Compile Include="Core\Enums\TipoPersona.cs" />
+    <Compile Include="Core\Enums\EstadoReserva.cs" />
+    <Compile Include="Core\Enums\EstadosProducto.cs" />
+    <Compile Include="Core\Utilites\Eventos\MoveAndDrop.cs" />
+    <Compile Include="Core\Utilites\Eventos\Movement.cs" />
+    <Compile Include="Core\Utilites\Eventos\WindowsControl.cs" />
+    <Compile Include="Core\Utilites\Filtros\Filter.cs" />
+    <Compile Include="Core\Utilites\FormatosTexto\FormatosTexto.cs" />
+    <Compile Include="Core\Utilites\ImageResources\ImagenesResources.cs" />
+    <Compile Include="Core\Utilites\Interfaces\IHover.cs" />
+    <Compile Include="Core\Utilites\Interfaces\IWindowsControl.cs" />
+    <Compile Include="Core\Utilites\Colors\ListaColores.cs" />
+    <Compile Include="Core\Utilites\RutaImagenes\Ruta_Imagen.cs" />
+    <Compile Include="AccesoDatos\Enums\SendMetodo.cs" />
+    <Compile Include="Core\Utilites\Strings\StringList.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Contexto\UrlConexion.cs" />
+    <Compile Include="Core\Utilites\UI\Paneles\CardAdapter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Utilites\UI\Paneles\CardAdapter.Designer.cs">
+      <DependentUpon>CardAdapter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Utilites\UI\Paneles\ReciclerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Utilites\UI\Paneles\ReciclerView.Designer.cs">
+      <DependentUpon>ReciclerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Utilites\Validaciones\IsElement.cs" />
+    <Compile Include="Core\Utilites\Validaciones\ValidarDni.cs" />
+    <Compile Include="Core\Utilites\Validaciones\ValidarEmail.cs" />
+    <Compile Include="Core\Utilites\Validaciones\ValidarTxt.cs" />
+    <Compile Include="Core\Utilites\Validaciones\ValidarYoutube.cs" />
+    <Compile Include="Models\Shared\IEntidad.cs" />
+    <Compile Include="Models\Entities\Concrets\Compuestas\Compra.cs" />
+    <Compile Include="Models\Entities\Concrets\Compuestas\Devolucion.cs" />
+    <Compile Include="Models\Entities\Concrets\Compuestas\Pedido.cs" />
+    <Compile Include="Models\Entities\Concrets\Compuestas\Reserva.cs" />
+    <Compile Include="Models\Entities\Concrets\Conexiones\LineaCompra.cs" />
+    <Compile Include="Models\Entities\Concrets\Conexiones\LineaPedido.cs" />
+    <Compile Include="Models\Entities\Concrets\Conexiones\PermisosRol.cs" />
+    <Compile Include="Models\Entities\Concrets\Compuestas\Producto.cs" />
+    <Compile Include="Models\Entities\Concrets\Simples\Categoria.cs" />
+    <Compile Include="Models\Entities\Concrets\Simples\Direccion.cs" />
+    <Compile Include="Models\Entities\Concrets\Simples\Permiso.cs" />
+    <Compile Include="Models\Entities\Concrets\Simples\Rol.cs" />
+    <Compile Include="Models\Entities\Concrets\Usuarios\Cliente.cs" />
+    <Compile Include="Models\Entities\Concrets\Usuarios\Empleado.cs" />
+    <Compile Include="Models\Entities\Concrets\Usuarios\Persona.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AccesoDatos\Repositorie\Shared\Repositorie.cs" />
+    <Compile Include="AccesoDatos\Repositorie\Shared\IRepositorie.cs" />
+    <Compile Include="AccesoDatos\Services\Rest\RestGet.cs" />
+    <Compile Include="AccesoDatos\Services\Rest\RestSend.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="System\Windows\Forms\AlertPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="System\Windows\Forms\HintText.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="System\Windows\Forms\PictureHover.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Componentes\Buscador.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Componentes\Buscador.Designer.cs">
+      <DependentUpon>Buscador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Componentes\DataBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Componentes\DataBox.Designer.cs">
+      <DependentUpon>DataBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Componentes\ImageFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Componentes\ImageFile.Designer.cs">
+      <DependentUpon>ImageFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Componentes\pnData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Componentes\pnData.Designer.cs">
+      <DependentUpon>pnData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Componentes\pnPaginate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Componentes\pnPaginate.Designer.cs">
+      <DependentUpon>pnPaginate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Fichas\AddCategoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Fichas\AddCategoria.Designer.cs">
+      <DependentUpon>AddCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\FormContainers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\FormContainers.Designer.cs">
+      <DependentUpon>FormContainers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvSocios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvSocios.Designer.cs">
+      <DependentUpon>RvSocios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Empleados\FormFileEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Empleados\FormFileEmpleado.Designer.cs">
+      <DependentUpon>FormFileEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Socios\FormAddCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Socios\FormAddCliente.Designer.cs">
+      <DependentUpon>FormAddCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Fichas\EditCategoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Fichas\EditCategoria.Designer.cs">
+      <DependentUpon>EditCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Shop\FormCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Shop\FormCompra.Designer.cs">
+      <DependentUpon>FormCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormApp.Designer.cs">
+      <DependentUpon>FormApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Shop\FormCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Shop\FormCaja.Designer.cs">
+      <DependentUpon>FormCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Categorias\FormCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Categorias\FormCategorias.Designer.cs">
+      <DependentUpon>FormCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Empleados\FormAddEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Empleados\FormAddEmpleado.Designer.cs">
+      <DependentUpon>FormAddEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Categorias\FormEditCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Categorias\FormEditCategoria.Designer.cs">
+      <DependentUpon>FormEditCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Empleados\FormEditEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Empleados\FormEditEmpleado.Designer.cs">
+      <DependentUpon>FormEditEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Facturas\FormFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Facturas\FormFacturas.Designer.cs">
+      <DependentUpon>FormFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormInventario.Designer.cs">
+      <DependentUpon>FormInventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\Ficha_Categoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\Ficha_Categoria.Designer.cs">
+      <DependentUpon>Ficha_Categoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\FormEmpleadoDesing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\FormEmpleadoDesing.Designer.cs">
+      <DependentUpon>FormEmpleadoDesing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\FormPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\FormPersona.Designer.cs">
+      <DependentUpon>FormPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Empleados\FormEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Empleados\FormEmpleados.Designer.cs">
+      <DependentUpon>FormEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Productos\FormProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Productos\FormProducto.Designer.cs">
+      <DependentUpon>FormProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\UI_Productos\FormAddProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Productos\FormAddProducto.Designer.cs">
+      <DependentUpon>FormAddProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\FormBack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms_Desing\FormBack.Designer.cs">
+      <DependentUpon>FormBack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvCategorias.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvCategorias.Designer.cs">
+      <DependentUpon>RvCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvEmpleados.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvEmpleados.Designer.cs">
+      <DependentUpon>RvEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvLineaCompra.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvLineaCompra.Designer.cs">
+      <DependentUpon>RvLineaCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvProducts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvProducts.Designer.cs">
+      <DependentUpon>RvProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvProductToShop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvProductToShop.Designer.cs">
+      <DependentUpon>RvProductToShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvRols.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReciclerViews\RvRols.Designer.cs">
+      <DependentUpon>RvRols.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Socios\FormClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Socios\FormClientes.Designer.cs">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Socios\FormEditCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Socios\FormEditCliente.Designer.cs">
+      <DependentUpon>FormEditCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UI_Socios\FormFileCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI_Socios\FormFileCliente.Designer.cs">
+      <DependentUpon>FormFileCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterFactura.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterFactura.Designer.cs">
+      <DependentUpon>AdapterFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterLineaCompra.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterLineaCompra.Designer.cs">
+      <DependentUpon>AdapterLineaCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterLineaCompraFactura.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterLineaCompraFactura.Designer.cs">
+      <DependentUpon>AdapterLineaCompraFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterProductoToShop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterProductoToShop.Designer.cs">
+      <DependentUpon>AdapterProductoToShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterRol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterRol.Designer.cs">
+      <DependentUpon>AdapterRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterCliente.Designer.cs">
+      <DependentUpon>AdapterCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterString.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterString.Designer.cs">
+      <DependentUpon>AdapterString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterEmpleado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterEmpleado.Designer.cs">
+      <DependentUpon>AdapterEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterProducto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\Adapter\AdapterProducto.Designer.cs">
+      <DependentUpon>AdapterProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\CategoriaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\CategoriaControl.Designer.cs">
+      <DependentUpon>CategoriaControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\ProductoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\ProductoControl.Designer.cs">
+      <DependentUpon>ProductoControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Core\Utilites\UI\Paneles\CardAdapter.resx">
+      <DependentUpon>CardAdapter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Utilites\UI\Paneles\ReciclerView.resx">
+      <DependentUpon>ReciclerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Componentes\Buscador.resx">
+      <DependentUpon>Buscador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Componentes\DataBox.resx">
+      <DependentUpon>DataBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Componentes\ImageFile.resx">
+      <DependentUpon>ImageFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Componentes\pnPaginate.resx">
+      <DependentUpon>pnPaginate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Fichas\AddCategoria.resx">
+      <DependentUpon>AddCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms_Desing\FormContainers.resx">
+      <DependentUpon>FormContainers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Empleados\FormFileEmpleado.resx">
+      <DependentUpon>FormFileEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Socios\FormAddCliente.resx">
+      <DependentUpon>FormAddCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Fichas\EditCategoria.resx">
+      <DependentUpon>EditCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Shop\FormCompra.resx">
+      <DependentUpon>FormCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormApp.resx">
+      <DependentUpon>FormApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Shop\FormCaja.resx">
+      <DependentUpon>FormCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Categorias\FormCategorias.resx">
+      <DependentUpon>FormCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Empleados\FormAddEmpleado.resx">
+      <DependentUpon>FormAddEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Categorias\FormEditCategoria.resx">
+      <DependentUpon>FormEditCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Empleados\FormEditEmpleado.resx">
+      <DependentUpon>FormEditEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Facturas\FormFacturas.resx">
+      <DependentUpon>FormFacturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormInventario.resx">
+      <DependentUpon>FormInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms_Desing\Ficha_Categoria.resx">
+      <DependentUpon>Ficha_Categoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms_Desing\FormEmpleadoDesing.resx">
+      <DependentUpon>FormEmpleadoDesing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms_Desing\FormPersona.resx">
+      <DependentUpon>FormPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Empleados\FormEmpleados.resx">
+      <DependentUpon>FormEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Productos\FormProducto.resx">
+      <DependentUpon>FormProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Productos\FormAddProducto.resx">
+      <DependentUpon>FormAddProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms_Desing\FormBack.resx">
+      <DependentUpon>FormBack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReciclerViews\RvCategorias.resx">
+      <DependentUpon>RvCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReciclerViews\RvEmpleados.resx">
+      <DependentUpon>RvEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReciclerViews\RvProducts.resx">
+      <DependentUpon>RvProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Socios\FormClientes.resx">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Socios\FormEditCliente.resx">
+      <DependentUpon>FormEditCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI_Socios\FormFileCliente.resx">
+      <DependentUpon>FormFileCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterCliente.resx">
+      <DependentUpon>AdapterCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterFactura.resx">
+      <DependentUpon>AdapterFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterLineaCompra.resx">
+      <DependentUpon>AdapterLineaCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterLineaCompraFactura.resx">
+      <DependentUpon>AdapterLineaCompraFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterProductoToShop.resx">
+      <DependentUpon>AdapterProductoToShop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterRol.resx">
+      <DependentUpon>AdapterRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterString.resx">
+      <DependentUpon>AdapterString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterEmpleado.resx">
+      <DependentUpon>AdapterEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\Adapter\AdapterProducto.resx">
+      <DependentUpon>AdapterProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\CategoriaControl.resx">
+      <DependentUpon>CategoriaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\ProductoControl.resx">
+      <DependentUpon>ProductoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Abstract.Categoria.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Abstract.Cliente.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Abstract.Empleado.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Abstract.Permiso.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Abstract.Persona.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Abstract.Producto.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.Compra.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.Devolucion.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.Direccion.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.LineaCompra.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.LineaPedido.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.Pedido.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.PermisosRol.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.Reserva.datasource" />
+    <None Include="Properties\DataSources\ApiTienda.Models.Request.Concret.Rol.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\name.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoBlack&amp;White.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product_icon_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open-menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\license_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tracking_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cart_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invoice_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NOT_IMAGE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Informes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

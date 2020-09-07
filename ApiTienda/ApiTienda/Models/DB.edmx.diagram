@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c5f666bbf56a4b63a120edfc381eb25d" Name="Diagram1">
+        <EntityTypeShape EntityType="TiendaDBModel.Categoria" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Cliente" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Compra" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Devolucion" Width="1.5" PointX="12.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Direccion" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Empleado" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.LineaCompra" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.LineaPedido" Width="1.5" PointX="9.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Pedido" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Permiso" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.PermisosRol" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Persona" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Producto" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Reserva" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TiendaDBModel.Rol" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="TiendaDBModel.FK_Producto_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Subcategoria_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Cliente_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Compra_Comprador" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Compra_Vendedor" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_LineaCompra_Compra" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Devolucion_LineaCompra" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Direccion_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Empleado_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Pedido_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Rol_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.Fk_LineaCompra_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_LineaPedido_Compra" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.Fk_LineaPedido_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_PermisosRol_Permiso" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_PermisosRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.FK_Reserva_Persona" ManuallyRouted="false" />
+        <AssociationConnector Association="TiendaDBModel.Fk_Reserva_Producto" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

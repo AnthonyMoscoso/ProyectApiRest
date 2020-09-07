@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TiendaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Categoria_Padre" Type="Int32" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Categoria" FromRole="Categoria" ToRole="Producto" />
+    <NavigationProperty Name="Categoria1" Relationship="Self.FK_Subcategoria_Categoria" FromRole="Categoria" ToRole="Categoria1" />
+    <NavigationProperty Name="Categoria2" Relationship="Self.FK_Subcategoria_Categoria" FromRole="Categoria1" ToRole="Categoria" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Id_Persona" />
+    </Key>
+    <Property Name="Id_Persona" Type="Int32" Nullable="false" />
+    <Property Name="Descuento" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="Fecha_Alta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Fecha_Baja" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Cliente_Persona" FromRole="Cliente" ToRole="Persona" />
+  </EntityType>
+  <EntityType Name="Compra">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Comprador" Type="Int32" />
+    <Property Name="Id_Vendedor" Type="Int32" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FormaPago" Type="Int32" Nullable="false" />
+    <Property Name="Descuento" Type="Decimal" Precision="6" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Compra_Comprador" FromRole="Compra" ToRole="Persona" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK_Compra_Vendedor" FromRole="Compra" ToRole="Empleado" />
+    <NavigationProperty Name="LineaCompra" Relationship="Self.FK_LineaCompra_Compra" FromRole="Compra" ToRole="LineaCompra" />
+  </EntityType>
+  <EntityType Name="Devolucion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Id_LineaCompra" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LineaCompra" Relationship="Self.FK_Devolucion_LineaCompra" FromRole="Devolucion" ToRole="LineaCompra" />
+  </EntityType>
+  <EntityType Name="Direccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodigoPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Pais" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Direccion_Persona" FromRole="Direccion" ToRole="Persona" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="Id_Persona" />
+    </Key>
+    <Property Name="Id_Persona" Type="Int32" Nullable="false" />
+    <Property Name="Dni" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descuento" Type="Decimal" Precision="4" Scale="2" />
+    <Property Name="Id_Rol" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_Contratacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Fecha_Despido" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Compra" Relationship="Self.FK_Compra_Vendedor" FromRole="Empleado" ToRole="Compra" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Empleado_Persona" FromRole="Empleado" ToRole="Persona" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Empleado" FromRole="Empleado" ToRole="Pedido" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_Rol_Empleado" FromRole="Empleado" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="LineaCompra">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Producto" Type="Int32" Nullable="false" />
+    <Property Name="Id_Compra" Type="Int32" Nullable="false" />
+    <Property Name="Precio" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Descuento" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Compra" Relationship="Self.FK_LineaCompra_Compra" FromRole="LineaCompra" ToRole="Compra" />
+    <NavigationProperty Name="Devolucion" Relationship="Self.FK_Devolucion_LineaCompra" FromRole="LineaCompra" ToRole="Devolucion" />
+    <NavigationProperty Name="Producto" Relationship="Self.Fk_LineaCompra_Producto" FromRole="LineaCompra" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="LineaPedido">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Id_Pedido" />
+      <PropertyRef Name="Id_Producto" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Pedido" Type="Int32" Nullable="false" />
+    <Property Name="Id_Producto" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Precio" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_LineaPedido_Compra" FromRole="LineaPedido" ToRole="Pedido" />
+    <NavigationProperty Name="Producto" Relationship="Self.Fk_LineaPedido_Producto" FromRole="LineaPedido" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Empleado" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK_Pedido_Empleado" FromRole="Pedido" ToRole="Empleado" />
+    <NavigationProperty Name="LineaPedido" Relationship="Self.FK_LineaPedido_Compra" FromRole="Pedido" ToRole="LineaPedido" />
+  </EntityType>
+  <EntityType Name="Permiso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PermisosRol" Relationship="Self.FK_PermisosRol_Permiso" FromRole="Permiso" ToRole="PermisosRol" />
+  </EntityType>
+  <EntityType Name="PermisosRol">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Id_Permiso" />
+      <PropertyRef Name="Id_Rol" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Permiso" Type="Int32" Nullable="false" />
+    <Property Name="Id_Rol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Permiso" Relationship="Self.FK_PermisosRol_Permiso" FromRole="PermisosRol" ToRole="Permiso" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_PermisosRol_Rol" FromRole="PermisosRol" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Direccion" Type="Int32" Nullable="false" />
+    <Property Name="Tipo" Type="Int32" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Persona" FromRole="Persona" ToRole="Cliente" />
+    <NavigationProperty Name="Compra" Relationship="Self.FK_Compra_Comprador" FromRole="Persona" ToRole="Compra" />
+    <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Persona" FromRole="Persona" ToRole="Direccion" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Persona" FromRole="Persona" ToRole="Empleado" />
+    <NavigationProperty Name="Reserva" Relationship="Self.FK_Reserva_Persona" FromRole="Persona" ToRole="Reserva" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Categoria" Type="Int32" Nullable="false" />
+    <Property Name="PrecioCompra" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+    <Property Name="PrecioVenta" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+    <Property Name="Descuento" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CantidadInventario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK_Producto_Categoria" FromRole="Producto" ToRole="Categoria" />
+    <NavigationProperty Name="LineaCompra" Relationship="Self.Fk_LineaCompra_Producto" FromRole="Producto" ToRole="LineaCompra" />
+    <NavigationProperty Name="LineaPedido" Relationship="Self.Fk_LineaPedido_Producto" FromRole="Producto" ToRole="LineaPedido" />
+    <NavigationProperty Name="Reserva" Relationship="Self.Fk_Reserva_Producto" FromRole="Producto" ToRole="Reserva" />
+  </EntityType>
+  <EntityType Name="Reserva">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Producto" Type="Int32" Nullable="false" />
+    <Property Name="Id_Persona" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Precio" Type="Decimal" Precision="8" Scale="4" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Estado" Type="Int32" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Reserva_Persona" FromRole="Reserva" ToRole="Persona" />
+    <NavigationProperty Name="Producto" Relationship="Self.Fk_Reserva_Producto" FromRole="Reserva" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK_Rol_Empleado" FromRole="Rol" ToRole="Empleado" />
+    <NavigationProperty Name="PermisosRol" Relationship="Self.FK_PermisosRol_Rol" FromRole="Rol" ToRole="PermisosRol" />
+  </EntityType>
+  <Association Name="FK_Producto_Categoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Id_Categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subcategoria_Categoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="Categoria1" Type="Self.Categoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Categoria1">
+        <PropertyRef Name="Id_Categoria_Padre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="Id_Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compra_Comprador">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="Id_Comprador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compra_Vendedor">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="Id_Persona" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="Id_Vendedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LineaCompra_Compra">
+    <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
+    <End Role="LineaCompra" Type="Self.LineaCompra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compra">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineaCompra">
+        <PropertyRef Name="Id_Compra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Devolucion_LineaCompra">
+    <End Role="LineaCompra" Type="Self.LineaCompra" Multiplicity="1" />
+    <End Role="Devolucion" Type="Self.Devolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LineaCompra">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Devolucion">
+        <PropertyRef Name="Id_LineaCompra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Direccion_Persona">
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="Id_Direccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleado_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="Id_Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Empleado">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="Id_Persona" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="Id_Empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rol_Empleado">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="Id_Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_LineaCompra_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="LineaCompra" Type="Self.LineaCompra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineaCompra">
+        <PropertyRef Name="Id_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LineaPedido_Compra">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="LineaPedido" Type="Self.LineaPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineaPedido">
+        <PropertyRef Name="Id_Pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_LineaPedido_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="LineaPedido" Type="Self.LineaPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineaPedido">
+        <PropertyRef Name="Id_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PermisosRol_Permiso">
+    <End Role="Permiso" Type="Self.Permiso" Multiplicity="1" />
+    <End Role="PermisosRol" Type="Self.PermisosRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permiso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PermisosRol">
+        <PropertyRef Name="Id_Permiso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PermisosRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="PermisosRol" Type="Self.PermisosRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PermisosRol">
+        <PropertyRef Name="Id_Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reserva_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="Id_Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_Reserva_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="Id_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TiendaDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Compra" EntityType="Self.Compra" />
+    <EntitySet Name="Devolucion" EntityType="Self.Devolucion" />
+    <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+    <EntitySet Name="LineaCompra" EntityType="Self.LineaCompra" />
+    <EntitySet Name="LineaPedido" EntityType="Self.LineaPedido" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+    <EntitySet Name="Permiso" EntityType="Self.Permiso" />
+    <EntitySet Name="PermisosRol" EntityType="Self.PermisosRol" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <AssociationSet Name="FK_Producto_Categoria" Association="Self.FK_Producto_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subcategoria_Categoria" Association="Self.FK_Subcategoria_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Categoria1" EntitySet="Categoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_Persona" Association="Self.FK_Cliente_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compra_Comprador" Association="Self.FK_Compra_Comprador">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Compra" EntitySet="Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compra_Vendedor" Association="Self.FK_Compra_Vendedor">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Compra" EntitySet="Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LineaCompra_Compra" Association="Self.FK_LineaCompra_Compra">
+      <End Role="Compra" EntitySet="Compra" />
+      <End Role="LineaCompra" EntitySet="LineaCompra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Devolucion_LineaCompra" Association="Self.FK_Devolucion_LineaCompra">
+      <End Role="LineaCompra" EntitySet="LineaCompra" />
+      <End Role="Devolucion" EntitySet="Devolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Direccion_Persona" Association="Self.FK_Direccion_Persona">
+      <End Role="Direccion" EntitySet="Direccion" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleado_Persona" Association="Self.FK_Empleado_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Empleado" Association="Self.FK_Pedido_Empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rol_Empleado" Association="Self.FK_Rol_Empleado">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_LineaCompra_Producto" Association="Self.Fk_LineaCompra_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="LineaCompra" EntitySet="LineaCompra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LineaPedido_Compra" Association="Self.FK_LineaPedido_Compra">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="LineaPedido" EntitySet="LineaPedido" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_LineaPedido_Producto" Association="Self.Fk_LineaPedido_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="LineaPedido" EntitySet="LineaPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PermisosRol_Permiso" Association="Self.FK_PermisosRol_Permiso">
+      <End Role="Permiso" EntitySet="Permiso" />
+      <End Role="PermisosRol" EntitySet="PermisosRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PermisosRol_Rol" Association="Self.FK_PermisosRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="PermisosRol" EntitySet="PermisosRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Persona" Association="Self.FK_Reserva_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Reserva" EntitySet="Reserva" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_Reserva_Producto" Association="Self.Fk_Reserva_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Reserva" EntitySet="Reserva" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
